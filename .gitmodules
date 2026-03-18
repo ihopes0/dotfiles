@@ -1,0 +1,6 @@
+[submodule "dotfiles/linux/zsh/.config/zsh/custom/plugins/zsh-autosuggestions"]
+	path = dotfiles/linux/zsh/.config/zsh/custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "dotfiles/linux/zsh/.config/zsh/custom/plugins/zsh-syntax-highlighting"]
+	path = dotfiles/linux/zsh/.config/zsh/custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
