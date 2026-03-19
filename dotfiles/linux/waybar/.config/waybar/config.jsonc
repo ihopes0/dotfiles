@@ -199,6 +199,6 @@
     "custom/power": {
         "format" : "⏻ ",
 		"tooltip": false,
-		"on-click": "pgrep wleave || wleave"
+		"on-click": "pgrep wleave || wleave &"
     }
 }

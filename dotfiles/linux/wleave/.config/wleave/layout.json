@@ -1,0 +1,42 @@
+{
+    "margin-top": "35%",
+    "buttons-per-row": "1/1",
+    "delay-command-ms": 100,
+    "no-version-info": true,
+    "show-keybinds": true,
+    "buttons": [
+        {
+            "label": "lock",
+            "action": [],
+            "text": "Lock",
+            "keybind": "l",
+            "icon": "/usr/share/wleave/icons/lock.svg"
+        },
+        {
+            "label": "logout",
+            "action": [
+                {
+                    "$DESKTOP_SESSION": "hyprland",
+                    "shell": "hyprctl dispatch exit 0"
+                }
+            ],
+            "text": "Logout",
+            "keybind": "e",
+            "icon": "/usr/share/wleave/icons/logout.svg"
+        },
+        {
+            "label": "shutdown",
+            "action": "systemctl poweroff",
+            "text": "Shutdown",
+            "keybind": "s",
+            "icon": "/usr/share/wleave/icons/shutdown.svg"
+        },
+        {
+            "label": "reboot",
+            "action": "systemctl reboot",
+            "text": "Reboot",
+            "keybind": "r",
+            "icon": "/usr/share/wleave/icons/reboot.svg"
+        }
+    ]
+}

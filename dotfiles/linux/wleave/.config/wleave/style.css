@@ -1,0 +1,78 @@
+/**
+ * See https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/css-variables.html for more CSS variables.
+ * Or use your own colors. Both work, but using your own colors may break the automatic light/dark theme function.
+ */
+
+:root {
+    --hypr-accent-color: #F565A0;
+}
+
+window {
+    background: radial-gradient(rgba(20, 20, 20, 0.5), rgba(145, 152, 229, 0.1));
+}
+
+button {
+    border-radius: 15px;
+    border-color: transparent;
+	text-decoration-color: #FFFFFF;
+    color: #FFFFFF;
+	background-color: --parent;
+	border-style: solid;
+	border-width: 1px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 15%;
+	margin: 10px;
+    animation: gradient_f 10s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682), box-shadow 0.2 ease-in-out, background-color 0.2s ease-in-out;
+}
+
+button label.action-name {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+button label.keybind {
+    font-size: 20px;
+    font-family: monospace;
+}
+
+button:hover label.keybind, button:focus label.keybind {
+    opacity: 1;
+}
+
+button:focus,
+button:hover {
+    border-color: transparent;
+    background-color: color-mix(in srgb, var(--hypr-accent-color), var(--view-bg-color));
+}
+
+button:active {
+    border-color: transparent;
+    color: var(--accent-fg-color);
+    background-color: var(--hypr-accent-color);
+}
+
+button#shutdown {
+    --view-fg-color: #ff8d8d;
+}
+
+button#hibernate {
+    --view-fg-color: #a8c0ff;
+}
+
+button#reboot {
+    --view-fg-color: #84ffaa;
+}
+
+button#lock {
+    --view-fg-color: #ffe8b6;
+}
+
+button#logout {
+    --view-fg-color: #ffcca8;
+}
+
+button#suspend {
+    --view-fg-color: #caaff9;
+}
