@@ -2,6 +2,12 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
+USER_LOCAL_FONTS_DIR="$HOME/.local/share/fonts"
+USER_FONTS_DIR="$HOME/.fonts"
+GLOBAL_FONTS_DIR="/usr/share/fonts"
+
+fontDirectories=("$USER_LOCAL_FONTS_DIR" "$USER_FONTS_DIR" "$GLOBAL_FONTS_DIR")
+
 copyFrom="$SCRIPT_DIR/../../../shared/fonts"
 copyTo="/home/$USER/.local/share/fonts"
 
@@ -18,7 +24,7 @@ else
 fi
 
 if [[ ! "$2" ]]; then
-    echo "You didn't specified copyTo directory.\nWrite a full path to a fonts destination directory OR stay with a default path:"
+    echo "You didn't specified copyTo directory. Write a full path to a fonts destination directory OR stay with a default path:"
     echo "$copyTo"
     read -r -p "[Empty for default] " response
     response=${response,,}
@@ -50,20 +56,42 @@ if [[ $response =~ ^(y| ) ]] || [[ -z $response ]]; then
         fullCopyFrom="$copyFrom/$rel"
         fullCopyTo="$copyTo/$rel"
 
-        if ls -ld "$fullCopyTo" > /dev/null; then
-            echo "Directory $fullCopyTo already exists. Delete it first. Skipping these fonts."
-        else
-            echo "Copy from $fullCopyFrom to $fullCopyTo"
-            find "$fullCopyFrom" -type f \( -iname "*.otf" -o -iname "*.ttf" \) -exec cp -n {} "$fullCopyTo" \;
-            count=$(find "$fullCopyFrom" -type f \( -iname "*.otf" -o -iname "*.ttf" \) | wc -l)
-            (( installedFontsCount += count ))
+        relInstalledFontsCount=0
 
-            fontTypes+=("$rel")
-            echo "Copying of $rel is done."
-        fi
+        echo "Copy from $fullCopyFrom to $fullCopyTo"
+
+        while IFS= read -r fontFilePath; do
+            skipping=0
+            fontFileName="${fontFilePath##*/}"
+
+            for fontDir in "${fontDirectories[@]}"; do
+                [[ ! -d "$fontDir" ]] && continue
+                if find "$fontDir" -type f -iname "$fontFileName" | grep -q .; then
+                    echo "Font file $fontFileName exists in $fontDir. Skipping copying it..."
+                    skipping=1
+                fi
+            done
+
+            [[ $skipping == 1 ]] && continue
+
+            [[ ! -d "$fullCopyTo" ]] && mkdir -p "$fullCopyTo"
+
+            cp -n "$fontFilePath" "$fullCopyTo"
+            (( installedFontsCount += 1 ))
+            (( relInstalledFontsCount += 1 ))
+
+            unset fontFileName
+            unset fontFilePath
+            unset skipping
+        done < <(find "$fullCopyFrom" -type f \( -iname "*.otf" -o -iname "*.ttf" \))
+
+        [[ $relInstalledFontsCount != 0 ]] && fontTypes+=("$rel")
+
+        echo "Copying of $rel is done. Copied $relInstalledFontsCount fonts."
+
+        unset relInstalledFontsCount
         unset fullCopyFrom
         unset fullCopyTo
-
         unset rel
         unset dir
     done < <(find "$copyFrom" -type d)
