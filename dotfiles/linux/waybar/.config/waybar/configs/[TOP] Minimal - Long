@@ -11,7 +11,7 @@
   "$HOME/.config/waybar/UserModules",
   ],
 "layer": "top",
-//"mode": "dock",
+// "mode": "dock",
 "exclusive": true,
 "passthrough": false,
 "position": "top",
@@ -29,6 +29,7 @@
 	"custom/separator#blank_2",
 	"mpris",
 	"group/notify",
+	"group/connections",
 	"tray",
 	],
 "modules-center": [
