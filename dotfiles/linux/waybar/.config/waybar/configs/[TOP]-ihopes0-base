@@ -10,7 +10,8 @@
     "margin-right": 10,
     // Choose the order of the modules
     "modules-left": [
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "network",
     ],
     "modules-center": [
         "hyprland/window"
@@ -128,20 +129,47 @@
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
+        // h"interval": 5,
+        "align": 0,
+        "rotate": 0,
+        //"bat": "BAT1",
+        //"adapter": "ACAD",
+        "full-at": 100,
+        "design-capacity": false,
         "states": {
-            // "good": 95,
+            "good": 95,
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
-        "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}%",
-        "format-plugged": "{capacity}%",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["BATT", "FULL", "CHAR", "PLUG", "WARN"]
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": "󱘖 {capacity}%",
+        "format-alt-click": "click",
+        "format-full": "{icon} Full",
+        "format-alt": "{icon} {time}",
+        "format-icons": [
+            "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+        ],
+        "format-time": "{H}h {M}min",
+        "tooltip": true,
+        "tooltip-format": "{timeTo} {power}w",
     },
+
+    // "battery": {
+    //     "states": {
+    //         // "good": 95,
+    //         "warning": 30,
+    //         "critical": 15
+    //     },
+    //     "format": "{capacity}% {icon}",
+    //     "format-full": "{capacity}% {icon}",
+    //     "format-charging": "{capacity}%",
+    //     "format-plugged": "{capacity}%",
+    //     "format-alt": "{time} {icon}",
+    //     "format-good": "", // An empty format will hide the module
+    //     // "format-full": "",
+    //     "format-icons": ["BATT", "FULL", "CHAR", "PLUG", "WARN"]
+    // },
     "battery#bat2": {
         "bat": "BAT2"
     },
