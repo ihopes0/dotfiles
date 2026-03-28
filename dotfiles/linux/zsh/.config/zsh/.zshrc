@@ -77,7 +77,7 @@ CATPPUCCIN_SHOW_HOSTNAME="ssh"  # Optional! Options: never, always, ssh
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-omzsh_plugins=(zoxide vi-mode)
+omzsh_plugins=(zoxide vi-mode nvm)
 
 plugins=("${omzsh_plugins[@]}" zsh-autosuggestions zsh-syntax-highlighting catppuccin_frappe-zsh-syntax-highlighting)
 
