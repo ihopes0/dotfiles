@@ -1,3 +1,5 @@
+// Made by: https://github.com/ihopes0
+
 // -*- mode: jsonc -*-
 {
     // "layer": "top", // Waybar at top layer
@@ -11,7 +13,8 @@
     // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces",
-        "network",
+        "group/network",
+        "tray"
     ],
     "modules-center": [
         "hyprland/window"
@@ -23,29 +26,29 @@
         "memory",
         "temperature",
         "backlight",
-        "keyboard-state",
+        // "keyboard-state",
         "battery",
         "battery#bat2",
         "clock",
-        "tray",
+        // "tray",
         "custom/power"
     ],
     // Modules configuration
     "hyprland/workspaces": {
-	"format": "{name}> {icon}",
-	"format-icons": {
-            "1": "󰨞",
-	    "2": "",
-	    "3": "",
-	    "4": ""
-	},
-	"persistent-workspaces": {
-            "*": 4
-	}
+        "format": "{name}> {icon}",
+        "format-icons": {
+                "1": "󰨞",
+            "2": "",
+            "3": "",
+            "4": ""
+        },
+        "persistent-workspaces": {
+                "*": 4
+        }
     },
     "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
+        "numlock": false,
+        "capslock": false,
         "format": "{name} {icon}",
         "format-icons": {
             "locked": "L",
@@ -98,10 +101,10 @@
     "tray": {
         // "icon-size": 21,
         "spacing": 10,
-        // "icons": {
+        "icons": {
         //   "blueman": "bluetooth",
-        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
-        // }
+          "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+        }
     },
     "clock": {
         // "timezone": "America/New_York",
@@ -193,6 +196,16 @@
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
+    "bluetooth": {
+        "format": " ",
+        "format-disabled": "󰂳",
+        "format-connected": "󰂱 {num_connections}",
+        "tooltip-format": " {device_alias}",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": " {device_alias} 󰂄{device_battery_percentage}%",
+        "tooltip": true,
+        "on-click": "blueman-manager",
+    },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
@@ -228,5 +241,18 @@
         "format" : "⏻ ",
 		"tooltip": false,
 		"on-click": "pgrep wleave || wleave &"
+    },
+    // GROUPS
+    "group/network": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "network",
+            "transition-left-to-right": true
+        },
+        "modules": [
+            "network",
+            "bluetooth",
+        ]
     }
 }
