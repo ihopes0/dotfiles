@@ -7,7 +7,7 @@
     "buttons": [
         {
             "label": "lock",
-            "action": [],
+            "action": "$HOME/.config/hypr/scripts/LockScreen.sh",
             "text": "Lock",
             "keybind": "l",
             "icon": "/usr/share/wleave/icons/lock.svg"
