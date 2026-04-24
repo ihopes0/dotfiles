@@ -4,6 +4,15 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# Export Golang to PATH if exists
+if [[ -d "/usr/local/go/bin" ]]; then
+    export PATH="$PATH:/usr/local/go/bin"
+fi
+
+if [[ -d "$HOME/.dotnet/tools" ]]; then
+    export PATH="$PATH:$HOME/.dotnet/tools"
+fi
+
 # Set path to custom plugins and themes for OMZSH
 [[ -n $CUSTOM_ZSH_PATH ]] || export CUSTOM_ZSH_PATH="${${(%):-%x}:a:h}" 
 [[ -n $ZSH_CUSTOM ]] || export ZSH_CUSTOM="$CUSTOM_ZSH_PATH/custom"
